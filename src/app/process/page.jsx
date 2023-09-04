@@ -48,24 +48,18 @@ function Discover() {
     <Section title="Discover" image={{ src: imageWhiteboard }}>
       <div className="space-y-6 text-base text-neutral-600">
         <p>
-          We work closely with our clients to understand their{' '}
+          We first take the time to analyse our clients project requirements to
+          determine if and how we can efficiently help them.
+        </p>
+        <p>
+          We then work closely with our clients to understand their{' '}
           <strong className="font-semibold text-neutral-950">needs</strong> and
           goals, embedding ourselves in their every day operations to understand
           what makes their business tick.
         </p>
         <p>
-          Our team of private investigators shadow the company director’s for
-          several weeks while our account managers focus on going through their
-          trash. Our senior security experts then perform social engineering
-          hacks to gain access to their{' '}
-          <strong className="font-semibold text-neutral-950">business</strong>{' '}
-          accounts — handing that information over to our forensic accounting
-          team.
-        </p>
-        <p>
-          Once the full audit is complete, we report back with a comprehensive{' '}
-          <strong className="font-semibold text-neutral-950">plan</strong> and,
-          more importantly, a budget.
+          Finally, we propose a precise and detailed plan of the work to be
+          carried out to achieve our clients objectives.
         </p>
       </div>
 
@@ -73,12 +67,9 @@ function Discover() {
         Included in this phase
       </h3>
       <TagList className="mt-4">
-        <TagListItem>In-depth questionnaires</TagListItem>
         <TagListItem>Feasibility studies</TagListItem>
-        <TagListItem>Blood samples</TagListItem>
-        <TagListItem>Employee surveys</TagListItem>
-        <TagListItem>Proofs-of-concept</TagListItem>
-        <TagListItem>Forensic audit</TagListItem>
+        <TagListItem>In-depth analysis</TagListItem>
+        <TagListItem>Project planning</TagListItem>
       </TagList>
     </Section>
   )
@@ -89,32 +80,36 @@ function Build() {
     <Section title="Build" image={{ src: imageLaptop, shape: 1 }}>
       <div className="space-y-6 text-base text-neutral-600">
         <p>
-          Based off of the discovery phase, we develop a comprehensive roadmap
-          for each product and start working towards delivery. The roadmap is an
-          intricately tangled mess of technical nonsense designed to drag the
-          project out as long as possible.
+          We embrace agile methodologies and small iterations in our work, which
+          brings a host of advantages.
         </p>
         <p>
-          Each client is assigned a key account manager to keep lines of
-          communication open and obscure the actual progress of the project.
-          They act as a buffer between the client’s incessant nagging and the
-          development team who are hard at work scouring open source projects
-          for code to re-purpose.
+          By breaking down complex projects into manageable, bite-sized tasks,
+          teams can maintain a laser focus on delivering tangible value. This
+          approach promotes transparency and collaboration, as stakeholders are
+          continuously involved, ensuring their evolving needs are met.
         </p>
         <p>
-          Our account managers are trained to only reply to client emails after
-          9pm, several days after the initial email. This reinforces the general
-          aura that we are very busy and dissuades clients from asking for
-          changes.
+          Rapid feedback loops enable quick course corrections, reducing the
+          risk of costly errors. Moreover, small iterations enhance
+          adaptability, allowing teams to embrace changing requirements and
+          market dynamics.
+        </p>
+        <p>
+          In the end, Agile fosters a culture of continuous improvement,
+          ultimately resulting in faster, more efficient development cycles and
+          higher-quality software products that align closely with user
+          expectations.
         </p>
       </div>
 
       <Blockquote
-        author={{ name: 'Debra Fiscal', role: 'CEO of Unseal' }}
+        author={{ name: 'Denis Marinho', role: 'CFO of Skiset' }}
         className="mt-12"
       >
-        Studio were so regular with their progress updates we almost began to
-        think they were automated!
+        MaxentConsulting were regular and consistent with their progress
+        updates, allowing us to make necessary adjustments that we had not
+        initially planned.
       </Blockquote>
     </Section>
   )
@@ -125,35 +120,21 @@ function Deliver() {
     <Section title="Deliver" image={{ src: imageMeeting, shape: 2 }}>
       <div className="space-y-6 text-base text-neutral-600">
         <p>
-          About halfway through the Build phase, we push each project out by 6
-          weeks due to a change in{' '}
-          <strong className="font-semibold text-neutral-950">
-            requirements
-          </strong>
-          . This allows us to increase the budget a final time before launch.
+          Our agile approach to development means we can deliver frequent and
+          consistent updates throughout the course of our work.
         </p>
         <p>
-          Despite largely using pre-built components, most of the{' '}
-          <strong className="font-semibold text-neutral-950">progress</strong>{' '}
-          on each project takes place in the final 24 hours. The development
-          time allocated to each client is actually spent making augmented
-          reality demos that go viral on Twitter.
+          The initial plan will evolve, be tweaked and enriched, and it is only
+          when the system is fully operational and all parts of the plan have
+          been completed that we consider our work to be complete.
         </p>
         <p>
-          We ensure that the main pages of the site are{' '}
-          <strong className="font-semibold text-neutral-950">
-            fully functional
-          </strong>{' '}
-          at launch — the auxiliary pages will, of course, be lorem ipusm shells
-          which get updated as part of our exorbitant{' '}
-          <strong className="font-semibold text-neutral-950">
-            maintenance
-          </strong>{' '}
-          retainer.
+          Once all these requirements are met, we ensure that your IT team is in
+          a position to maintain and improve your project in the future.
         </p>
       </div>
 
-      <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
+      {/* <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
         Included in this phase
       </h3>
       <List className="mt-8">
@@ -169,7 +150,7 @@ function Deliver() {
           Because we hold the API keys for every critical service your business
           uses, you can expect a lifetime of support, and invoices, from us.
         </ListItem>
-      </List>
+      </List> */}
     </Section>
   )
 }
@@ -189,39 +170,36 @@ function Values() {
         title="Balancing reliability and innovation"
       >
         <p>
-          We strive to stay at the forefront of emerging trends and
-          technologies, while completely ignoring them and forking that old
-          Rails project we feel comfortable using. We stand by our core values
-          to justify that decision.
+          We put our clients at the forefront of everything we do, delivering
+          excellence tailored to your unique needs.
         </p>
       </SectionIntro>
 
       <Container className="mt-24">
         <GridList>
-          <GridListItem title="Meticulous">
-            The first part of any partnership is getting our designer to put
-            your logo in our template. The second step is getting them to do the
-            colors.
+          <GridListItem title="Transparency">
+            Open and clear communication is our norm, keeping you informed and
+            involved throughout the project lifecycle.
           </GridListItem>
-          <GridListItem title="Efficient">
-            We pride ourselves on never missing a deadline which is easy because
-            most of the work was done years ago.
+          <GridListItem title="Collaboration">
+            We work closely with your team, valuing collaboration as a key
+            driver of successful projects.
           </GridListItem>
-          <GridListItem title="Adaptable">
-            Every business has unique needs and our greatest challenge is
-            shoe-horning those needs into something we already built.
+          <GridListItem title="Agility">
+            Our adaptability enables us to pivot swiftly in response to changing
+            requirements or market dynamics.
           </GridListItem>
-          <GridListItem title="Honest">
-            We are transparent about all of our processes, banking on the simple
-            fact our clients never actually read anything.
+          <GridListItem title="Proactive Problem-Solving">
+            We anticipate challenges and address them before they become
+            roadblocks, ensuring smooth project execution.
           </GridListItem>
-          <GridListItem title="Loyal">
-            We foster long-term relationships with our clients that go beyond
-            just delivering a product, allowing us to invoice them for decades.
+          <GridListItem title="Long-Term Partnerships">
+            We aim to establish lasting relationships with our clients,
+            providing ongoing support and expertise.
           </GridListItem>
           <GridListItem title="Innovative">
-            The technological landscape is always evolving and so are we. We are
-            constantly on the lookout for new open source projects to clone.
+            We continuously explore cutting-edge technologies and methodologies
+            to provide you with the most innovative solutions.
           </GridListItem>
         </GridList>
       </Container>
@@ -241,8 +219,8 @@ export default function Process() {
       <PageIntro eyebrow="Our process" title="How we work">
         <p>
           We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+          best value to our clients. In order to do so, we choose wisely the
+          projects we work on.
         </p>
       </PageIntro>
 

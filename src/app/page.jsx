@@ -8,7 +8,7 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
-import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
+import logoReTokFull from '@/images/clients/retok/logo-full.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { loadCaseStudies } from '@/lib/mdx'
 
@@ -16,13 +16,12 @@ function CaseStudies({ caseStudies }) {
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="Our technology savviness to your service"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
+          Infusing our technological expertise, we stand ready to elevate your
+          experience with innovative solutions tailored to your needs.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -42,16 +41,7 @@ function CaseStudies({ caseStudies }) {
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
-                  <time
-                    dateTime={caseStudy.date.split('-')[0]}
-                    className="font-semibold"
-                  >
-                    {caseStudy.date.split('-')[0]}
-                  </time>
-                  <span className="text-neutral-300" aria-hidden="true">
-                    /
-                  </span>
-                  <span>Case study</span>
+                  Case study
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                   {caseStudy.title}
@@ -73,12 +63,13 @@ function Services() {
     <>
       <SectionIntro
         eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        title="We help you build, improve or migrate your IT system."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
+          Our interventions allows you to punch through barriers to entry by
+          giving you an edge in term of cost/performance ratio, helping you
+          become major actor in your industry.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -93,24 +84,24 @@ function Services() {
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Web development">
-              We specialise in crafting beautiful, high quality marketing pages.
-              The rest of the website will be a shell that uses lorem ipsum
-              everywhere.
+            <ListItem title="Proof of Concept development">
+              We deliver PoC application that is ready to scale by design,
+              highly performant and focused on the user experience.
             </ListItem>
-            <ListItem title="Application development">
-              We have a team of skilled developers who are experts in the latest
-              app frameworks, like Angular 1 and Google Web Toolkit.
+            <ListItem title="Database usage audit">
+              We can prevent the need to rewrite a webapp that didn't scale by
+              targeting specific queries that required advanced SQL development
+              to make them scalable.
             </ListItem>
-            <ListItem title="E-commerce">
-              We are at the forefront of modern e-commerce development. Which
-              mainly means adding your logo to the Shopify store template we’ve
-              used for the past six years.
+            <ListItem title="Evaluation of the relevance of a given technology to an existing IT system">
+              We know how difficult and costly it is to maintain an outdated
+              application or an app using the wrong technology so we help you
+              migrate to a modern solution with no pain.
             </ListItem>
-            <ListItem title="Custom content management">
-              At Studio we understand the importance of having a robust and
-              customised CMS. That’s why we run all of our client projects out
-              of a single, enormous Joomla instance.
+            <ListItem title="Enhance User Experience">
+              We understand how frustrating a slow or unintuitive application
+              can be for the user, which is why we constantly focus on its
+              satisfaction.
             </ListItem>
           </List>
         </div>
@@ -132,12 +123,12 @@ export default async function Home() {
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Award-winning development studio based in Denmark.
+            Crafting Apps for Impact: Scalability, UX, Performance Aligned.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            We are a development studio working at the intersection of design
-            and technology. It’s a really busy intersection though — a lot of
-            our staff have been involved in hit and runs.
+            We provide R&D services to European SMEs seeking to replace outdated
+            high maintenance and low performance web applications with state of
+            the art ones.
           </p>
         </FadeIn>
       </Container>
@@ -148,11 +139,10 @@ export default async function Home() {
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
+        client={{ name: 'ReTok', logo: logoReTokFull }}
       >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
+        The MaxentConsulting team exceeded our expectations, enabling us to
+        achieve our goals much more quickly than expected.
       </Testimonial>
 
       <ContactSection />

@@ -8,8 +8,8 @@ import { GridList, GridListItem } from '@/components/GridList'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { SectionIntro } from '@/components/SectionIntro'
-import { StatList, StatListItem } from '@/components/StatList'
-import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
+import imageBrunoEnten from '@/images/team/bruno-enten.jpg'
+import imageMaximeLerasle from '@/images/team/maxime-lerasle.jpg'
 import { loadArticles } from '@/lib/mdx'
 
 function Culture() {
@@ -17,7 +17,7 @@ function Culture() {
     <div className="mt-24 rounded-4xl bg-neutral-950 py-24 sm:mt-32 lg:mt-40 lg:py-32">
       <SectionIntro
         eyebrow="Our culture"
-        title="Balance your passion with your passion for life."
+        title="Balance your passion with a happy life."
         invert
       >
         <p>
@@ -27,16 +27,16 @@ function Culture() {
       <Container className="mt-16">
         <GridList>
           <GridListItem title="Loyalty" invert>
-            Our team has been with us since the beginning because none of them
-            are allowed to have LinkedIn profiles.
+            Our team has been working together for more than 10 years, which
+            improves efficiency of our team and satisfaction of our clients.
           </GridListItem>
           <GridListItem title="Trust" invert>
-            We don’t care when our team works just as long as they are working
-            every waking second.
+            We have open and honest communication, and we know we can rely on
+            each other during challenging situations.
           </GridListItem>
           <GridListItem title="Compassion" invert>
             You never know what someone is going through at home and we make
-            sure to never find out.
+            sure that everyone feels good at work.
           </GridListItem>
         </GridList>
       </Container>
@@ -51,7 +51,12 @@ const team = [
       {
         name: 'Bruno Enten',
         role: 'Co-Founder / CEO',
-        image: { src: imageLeslieAlexander },
+        image: { src: imageBrunoEnten },
+      },
+      {
+        name: 'Maxime Lerasle',
+        role: 'Co-Founder / CTO',
+        image: { src: imageMaximeLerasle },
       },
     ],
   },
@@ -124,26 +129,20 @@ export default async function About() {
         </p>
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
-            Studio was started by three friends who noticed that developer
-            studios were charging clients double what an in-house team would
-            cost. Since the beginning, we have been committed to doing things
-            differently by charging triple instead.
+            MaxentConsulting, previously Enten IT Consulting, was started in
+            2009 by Bruno Enten. Maxime Lerasle joined the company in 2012 as an
+            intern and then trained as a software engineer with senior
+            developers working there.
           </p>
           <p>
-            At Studio, we’re more than just colleagues — we’re a family. This
-            means we pay very little and expect people to work late. We want our
-            employees to bring their whole selves to work. In return, we just
-            ask that they keep themselves there until at least 6:30pm.
+            After more than 10 years working together, we have gradually
+            specialised in complementary technologies to offer a high-quality
+            service to our customers. We can count on a team of talented
+            developers to bring the various projects we work on to a successful
+            conclusion.
           </p>
         </div>
       </PageIntro>
-      <Container className="mt-16">
-        <StatList>
-          <StatListItem value="35" label="Underpaid employees" />
-          <StatListItem value="52" label="Placated clients" />
-          <StatListItem value="$25M" label="Invoices billed" />
-        </StatList>
-      </Container>
 
       <Culture />
 
@@ -152,7 +151,7 @@ export default async function About() {
       <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"
-        intro="Our team of experienced designers and developers has just one thing on their mind; working on your ideas to draw a smile on the face of your users worldwide. From conducting Brand Sprints to UX Design."
+        intro=""
         pages={blogArticles}
       />
 

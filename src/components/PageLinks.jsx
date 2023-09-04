@@ -6,7 +6,6 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { GridPattern } from '@/components/GridPattern'
 import { SectionIntro } from '@/components/SectionIntro'
-import { formatDate } from '@/lib/formatDate'
 
 function ArrowIcon(props) {
   return (
@@ -21,6 +20,7 @@ function ArrowIcon(props) {
 }
 
 function PageLink({ page }) {
+  console.log({ page })
   return (
     <article key={page.href}>
       <Border
@@ -30,12 +30,9 @@ function PageLink({ page }) {
         <h3 className="mt-6 text-base font-semibold text-neutral-950">
           {page.title}
         </h3>
-        <time
-          dateTime={page.date}
-          className="order-first text-sm text-neutral-600"
-        >
-          {formatDate(page.date)}
-        </time>
+        <span className="order-first text-sm text-neutral-600">
+          {page.client}
+        </span>
         <p className="mt-2.5 text-base text-neutral-600">{page.description}</p>
         <Link
           href={page.href}

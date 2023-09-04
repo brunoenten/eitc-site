@@ -9,8 +9,8 @@ const navigation = [
   {
     title: 'Work',
     links: [
-      { title: 'FamilyFund', href: '/work/family-fund' },
-      { title: 'Unseal', href: '/work/unseal' },
+      { title: 'Skiset', href: '/work/skiset' },
+      { title: 'ReTok', href: '/work/retok' },
       { title: 'Phobia', href: '/work/phobia' },
       {
         title: (
@@ -70,13 +70,13 @@ export function Footer() {
     <Container as="footer" className="mt-24 w-full sm:mt-32 lg:mt-40">
       <FadeIn>
         <Navigation />
-        
+
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
           <Link href="/" aria-label="Home">
             <Logo className="h-8" fillOnHover />
           </Link>
           <p className="text-sm text-neutral-700">
-            © Enten IT Consulting {new Date().getFullYear()}
+            © Maxen T Consulting {new Date().getFullYear()}
           </p>
         </div>
       </FadeIn>
