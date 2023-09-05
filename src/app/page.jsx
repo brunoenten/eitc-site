@@ -16,7 +16,7 @@ function CaseStudies({ caseStudies }) {
   return (
     <>
       <SectionIntro
-        title="Our technology savviness to your service"
+        title="Our technology savviness at your service"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>

@@ -11,7 +11,7 @@ const navigation = [
     links: [
       { title: 'Skiset', href: '/work/skiset' },
       { title: 'ReTok', href: '/work/retok' },
-      { title: 'Phobia', href: '/work/phobia' },
+      { title: 'Agenda.ch', href: '/work/agendach' },
       {
         title: (
           <>
