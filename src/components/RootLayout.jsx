@@ -1,14 +1,8 @@
 'use client'
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react'
+import { createContext, useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
@@ -17,9 +11,10 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import logo from '@/images/logo.svg'
+import logoWhite from '@/images/logoWhite.svg'
 
 const RootLayoutContext = createContext(null)
 
@@ -48,27 +43,25 @@ function Header({
   toggleRef,
   invert = false,
 }) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)
-
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
-          href="/"
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          />
+        <Link href="/" aria-label="Home">
+          {invert ? (
+            <Image
+              src={logoWhite}
+              alt="Maxent Consulting Logo"
+              className="h-12 w-auto"
+              unoptimized
+            />
+          ) : (
+            <Image
+              src={logo}
+              alt="Maxent Consulting Logo"
+              className="h-12 w-auto"
+              unoptimized
+            />
+          )}
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
