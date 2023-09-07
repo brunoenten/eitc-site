@@ -15,11 +15,11 @@ function TextInput({ label, ...props }) {
         id={id}
         {...props}
         placeholder=" "
-        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
+        className="border-abbey-300 text-abbey-950 focus:border-abbey-950 focus:ring-abbey-950/5 peer block w-full border bg-transparent px-6 pb-4 pt-12 text-base/6 ring-4 ring-transparent transition focus:outline-none group-first:rounded-t-2xl group-last:rounded-b-2xl"
       />
       <label
         htmlFor={id}
-        className="pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 text-neutral-500 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-neutral-950 peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-neutral-950"
+        className="text-abbey-500 peer-focus:text-abbey-950 peer-[:not(:placeholder-shown)]:text-abbey-950 pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold"
       >
         {label}
       </label>
@@ -37,7 +37,7 @@ function TextArea({ label, ...props }) {
         {...props}
         rows={8}
         placeholder="Describe your project"
-        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 placeholder-neutral-500 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
+        className="border-abbey-300 text-abbey-950 placeholder-abbey-500 focus:border-abbey-950 focus:ring-abbey-950/5 peer block w-full border bg-transparent px-6 pb-4 pt-12 text-base/6 ring-4 ring-transparent transition focus:outline-none group-first:rounded-t-2xl group-last:rounded-b-2xl"
       />
     </div>
   )
@@ -66,7 +66,7 @@ export function ContactForm() {
   return (
     <FadeIn className="lg:order-last">
       <form onSubmit={onSubmit}>
-        <h2 className="font-display text-base font-semibold text-neutral-950">
+        <h2 className="text-abbey-950 font-display text-base font-semibold">
           Work inquiries
         </h2>
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
@@ -84,9 +84,9 @@ export function ContactForm() {
           />
           <TextInput label="Phone" type="tel" name="phone" autoComplete="tel" />
           <TextArea label="Describe your project" name="message" />
-          {/* <div className="border border-neutral-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
+          {/* <div className="border border-abbey-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
               <fieldset>
-                <legend className="text-base/6 text-neutral-500">Budget</legend>
+                <legend className="text-base/6 text-abbey-500">Budget</legend>
                 <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
                   <RadioInput label="$25K – $50K" name="budget" value="25" />
                   <RadioInput label="$50K – $100K" name="budget" value="50" />

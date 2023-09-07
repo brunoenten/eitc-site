@@ -22,7 +22,11 @@ function GitHubIcon(props) {
 }
 
 export const socialMediaProfiles = [
-  { title: 'Linkedin', href: 'https://www.linkedin.com/company/enten-it-consulting/', icon: FacebookIcon },
+  {
+    title: 'Linkedin',
+    href: 'https://www.linkedin.com/company/enten-it-consulting/',
+    icon: FacebookIcon,
+  },
   { title: 'GitHub', href: 'https://github.com', icon: GitHubIcon },
 ]
 
@@ -32,7 +36,7 @@ export function SocialMedia({ className, invert = false }) {
       role="list"
       className={clsx(
         'flex gap-x-10',
-        invert ? 'text-white' : 'text-neutral-950',
+        invert ? 'text-white' : 'text-abbey-950',
         className,
       )}
     >
@@ -43,7 +47,7 @@ export function SocialMedia({ className, invert = false }) {
             aria-label={socialMediaProfile.title}
             className={clsx(
               'transition',
-              invert ? 'hover:text-neutral-200' : 'hover:text-neutral-700',
+              invert ? 'hover:text-abbey-200' : 'hover:text-abbey-700',
             )}
           >
             <socialMediaProfile.icon className="h-6 w-6 fill-current" />

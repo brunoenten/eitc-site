@@ -29,10 +29,10 @@ function Section({ title, image, children }) {
         <div className="mt-12 lg:mt-0 lg:w-[37rem] lg:flex-none lg:group-even/section:order-first">
           <FadeIn>
             <div
-              className="font-display text-base font-semibold before:text-neutral-300 before:content-['/_'] after:text-neutral-950 after:content-[counter(section,decimal-leading-zero)]"
+              className="before:text-abbey-300 after:text-abbey-950 font-display text-base font-semibold before:content-['/_'] after:content-[counter(section,decimal-leading-zero)]"
               aria-hidden="true"
             />
-            <h2 className="mt-2 font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
+            <h2 className="text-abbey-950 mt-2 font-display text-3xl font-medium tracking-tight sm:text-4xl">
               {title}
             </h2>
             <div className="mt-6">{children}</div>
@@ -46,14 +46,14 @@ function Section({ title, image, children }) {
 function Discover() {
   return (
     <Section title="Discover" image={{ src: imageWhiteboard }}>
-      <div className="space-y-6 text-base text-neutral-600">
+      <div className="text-abbey-600 space-y-6 text-base">
         <p>
           We first take the time to analyse our clients project requirements to
           determine if and how we can efficiently help them.
         </p>
         <p>
           We then work closely with our clients to understand their{' '}
-          <strong className="font-semibold text-neutral-950">needs</strong> and
+          <strong className="text-abbey-950 font-semibold">needs</strong> and
           goals, embedding ourselves in their every day operations to understand
           what makes their business tick.
         </p>
@@ -63,7 +63,7 @@ function Discover() {
         </p>
       </div>
 
-      <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
+      <h3 className="text-abbey-950 mt-12 font-display text-base font-semibold">
         Included in this phase
       </h3>
       <TagList className="mt-4">
@@ -78,7 +78,7 @@ function Discover() {
 function Build() {
   return (
     <Section title="Build" image={{ src: imageLaptop, shape: 1 }}>
-      <div className="space-y-6 text-base text-neutral-600">
+      <div className="text-abbey-600 space-y-6 text-base">
         <p>
           We embrace agile methodologies and small iterations in our work, which
           brings a host of advantages.
@@ -118,7 +118,7 @@ function Build() {
 function Deliver() {
   return (
     <Section title="Deliver" image={{ src: imageMeeting, shape: 2 }}>
-      <div className="space-y-6 text-base text-neutral-600">
+      <div className="text-abbey-600 space-y-6 text-base">
         <p>
           Our agile approach to development means we can deliver frequent and
           consistent updates throughout the course of our work.
@@ -134,7 +134,7 @@ function Deliver() {
         </p>
       </div>
 
-      {/* <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
+      {/* <h3 className="mt-12 font-display text-base font-semibold text-abbey-950">
         Included in this phase
       </h3>
       <List className="mt-8">
@@ -158,9 +158,9 @@ function Deliver() {
 function Values() {
   return (
     <div className="relative mt-24 pt-24 sm:mt-32 sm:pt-32 lg:mt-40 lg:pt-40">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[884px] overflow-hidden rounded-t-4xl bg-gradient-to-b from-neutral-50">
+      <div className="from-abbey-50 absolute inset-x-0 top-0 -z-10 h-[884px] overflow-hidden rounded-t-4xl bg-gradient-to-b">
         <GridPattern
-          className="absolute inset-0 h-full w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
+          className="fill-abbey-100 stroke-abbey-950/5 absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
           yOffset={-270}
         />
       </div>

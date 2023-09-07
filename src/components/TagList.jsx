@@ -12,7 +12,7 @@ export function TagListItem({ children, className }) {
   return (
     <li
       className={clsx(
-        'rounded-full bg-neutral-100 px-4 py-1.5 text-base text-neutral-600',
+        'bg-abbey-100 text-abbey-600 rounded-full px-4 py-1.5 text-base',
         className,
       )}
     >

@@ -14,7 +14,7 @@ export const MDXComponents = {
     return (
       <div
         className={clsx(
-          'group isolate my-10 overflow-hidden rounded-4xl bg-neutral-100 max-sm:-mx-6',
+          'bg-abbey-100 group isolate my-10 overflow-hidden rounded-4xl max-sm:-mx-6',
           className,
         )}
       >
@@ -53,7 +53,7 @@ export const MDXComponents = {
   TopTip({ children, className }) {
     return (
       <Border position="left" className={clsx('my-10 pl-8', className)}>
-        <p className="font-display text-sm font-bold uppercase tracking-widest text-neutral-950">
+        <p className="text-abbey-950 font-display text-sm font-bold uppercase tracking-widest">
           Top tip
         </p>
         <div className="mt-4">{children}</div>

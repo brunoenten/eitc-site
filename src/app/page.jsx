@@ -28,7 +28,7 @@ function CaseStudies({ caseStudies }) {
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
             <FadeIn key={caseStudy.href} className="flex">
-              <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
+              <article className="ring-abbey-950/5 hover:bg-abbey-50 relative flex w-full flex-col rounded-3xl p-6 ring-1 transition sm:p-8">
                 <h3>
                   <Link href={caseStudy.href}>
                     <span className="absolute inset-0 rounded-3xl" />
@@ -40,13 +40,13 @@ function CaseStudies({ caseStudies }) {
                     />
                   </Link>
                 </h3>
-                <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
+                <p className="text-abbey-950 mt-6 flex gap-x-2 text-sm">
                   Case study
                 </p>
-                <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+                <p className="text-abbey-950 mt-6 font-display text-2xl font-semibold">
                   {caseStudy.title}
                 </p>
-                <p className="mt-4 text-base text-neutral-600">
+                <p className="text-abbey-600 mt-4 text-base">
                   {caseStudy.description}
                 </p>
               </article>
@@ -122,10 +122,10 @@ export default async function Home() {
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
+          <h1 className="text-abbey-950 font-display text-5xl font-medium tracking-tight [text-wrap:balance] sm:text-7xl">
             Crafting Apps for Impact: Scalability, UX, Performance Aligned.
           </h1>
-          <p className="mt-6 text-xl text-neutral-600">
+          <p className="text-abbey-600 mt-6 text-xl">
             We provide R&D services to European SMEs seeking to replace outdated
             high maintenance and low performance web applications with state of
             the art ones.
