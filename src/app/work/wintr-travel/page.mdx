@@ -1,0 +1,52 @@
+import logo from '@/images/clients/wintr-travel/logo.svg'
+import imageAdrienNaeem from '@/images/clients/wintr-travel/adrien-naeem.jpeg'
+
+export const caseStudy = {
+  client: 'Wintr Travel',
+  title: 'Wintr Travel, ski rental and delivery',
+  description:
+    'Wintr Travel was a company whose ambition was to modernize the ski rental industry and to deliver rental skis to their customers residences.',
+  summary: [
+    'Wintr Travel was a company whose ambition was to modernize the ski rental industry and to deliver rental skis to their customers residences.',
+    'We developed their website with the aim of making the UX as pleasant as possible.',
+  ],
+  logo,
+  service: 'Poc, UX Design',
+  testimonial: {
+    author: { name: 'Adrien Naeem', role: 'CEO of Wintr' },
+    content:
+      'One of our objectives was to provide our customers with an impeccable UX, which MaxentConsulting has done perfectly.',
+  },
+}
+
+export const metadata = {
+  title: `${caseStudy.client} Case Study`,
+  description: caseStudy.description,
+}
+
+## Our work
+
+Wintr Travel's ambition was to modernize the ski rental industry. With this in mind, one of their main objectives was to offer their customers the most pleasant user experience possible during the booking process for their ski holiday.
+
+As their competitors had all been established for many years, their booking systems were outdated, requiring a great deal of information to be entered before a booking could be validated.
+
+Our approach was therefore to reduce the amount of information required during the booking process to a strict minimum, and to make each step intuitive in order to reduce friction for their customers, as secondary information could be filled in after the booking had been made.
+
+Unfortunately for Wintr Travel, the covid-19 pandemic took its toll on their business, but as a demonstration of the work we've done, we've put a [demo version online](https://wintr-travel.vercel.app/).
+
+The [source code](https://github.com/MLerasle/wintr-travel) is available on Github.
+
+## Services
+
+<TagList>
+  <TagListItem>Poc (Next.js)</TagListItem>
+  <TagListItem>UX Design</TagListItem>
+</TagList>
+
+<Blockquote
+  author={{ name: 'Adrien Naeem', role: 'CEO of Wintr' }}
+  image={{ src: imageAdrienNaeem }}
+>
+  One of our objectives was to provide our customers with an impeccable UX,
+  which MaxentConsulting has done perfectly.
+</Blockquote>
