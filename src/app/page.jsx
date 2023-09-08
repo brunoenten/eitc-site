@@ -10,6 +10,7 @@ import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoReTokFull from '@/images/clients/retok/logo-full.svg'
 import imageLaptop from '@/images/laptop.jpg'
+import proluceoScreenshot from '@/images/project-app-screenshot.png'
 import { loadCaseStudies } from '@/lib/mdx'
 
 function CaseStudies({ caseStudies }) {
@@ -110,6 +111,53 @@ function Services() {
   )
 }
 
+function Proluceo() {
+  return (
+    <>
+      <SectionIntro
+        title="Meet Proluceo, our open source web ERP"
+        className="mt-24sm:mt-32 lg:mt-40"
+      >
+        <p>
+          Having worked with a number of startups and SMEs, we realized that the
+          web ERPs available on the market were outdated, counter-intuitive, and
+          offered too many features for small businesses.
+        </p>
+        <p className="mt-4">
+          That's why we're currently developing our own web ERP, whose code is
+          open-source and can be found on{' '}
+          <a
+            href="https://github.com/proluceo"
+            target="_blank"
+            rel="noreferrer"
+            className="text-abbey-950 hover:text-abbey-700 font-semibold transition"
+            aria-label={`Proluceo source code on Github`}
+          >
+            Github
+          </a>
+          .
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeIn>
+          <div className="relative overflow-hidden">
+            <Image
+              src={proluceoScreenshot}
+              alt="Proluceo app screenshot"
+              class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
+              width="2432"
+              height="1442"
+            />
+            <div class="relative" aria-hidden="true">
+              <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
+            </div>
+          </div>
+        </FadeIn>
+      </Container>
+    </>
+  )
+}
+
 export const metadata = {
   description:
     'We are a development studio working at the intersection of design and technology.',
@@ -135,8 +183,6 @@ export default async function Home() {
 
       <Services />
 
-      <CaseStudies caseStudies={caseStudies} />
-
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'ReTok', logo: logoReTokFull }}
@@ -144,6 +190,10 @@ export default async function Home() {
         The MaxentConsulting team exceeded our expectations, enabling us to
         achieve our goals much more quickly than expected.
       </Testimonial>
+
+      <CaseStudies caseStudies={caseStudies} />
+
+      <Proluceo />
 
       <ContactSection />
     </>
