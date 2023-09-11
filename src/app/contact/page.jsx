@@ -56,7 +56,7 @@ function ContactDetails() {
 
 export const metadata = {
   title: 'Contact Us',
-  description: 'Let’s work together. We can’t wait to hear from you.',
+  description: 'Let us know what you would expect from us.',
 }
 
 export default function Contact() {

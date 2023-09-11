@@ -160,7 +160,7 @@ function Proluceo() {
 
 export const metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'We are an IT consulting agency helping European SMEs to get state of the art web applications.',
 }
 
 export default async function Home() {
