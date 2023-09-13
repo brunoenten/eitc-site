@@ -1,4 +1,5 @@
 import { RootLayout } from '@/components/RootLayout'
+import { Providers } from './providers'
 
 import '@/styles/tailwind.css'
 
@@ -12,9 +13,11 @@ export const metadata = {
 
 export default function Layout({ children }) {
   return (
-    <html lang="en" className="bg-abbey-950 h-full text-base antialiased">
+    <html lang="en" className="h-full bg-abbey-950 text-base antialiased light">
       <body className="flex min-h-full flex-col">
-        <RootLayout>{children}</RootLayout>
+        <Providers>
+          <RootLayout>{children}</RootLayout>
+        </Providers>
       </body>
     </html>
   )

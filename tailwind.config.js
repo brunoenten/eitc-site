@@ -1,8 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const { nextui } = require('@nextui-org/react')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,mdx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,mdx,ts,tsx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -45,5 +49,18 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  darkMode: 'class',
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: '#221E1F',
+            },
+          },
+        },
+      },
+    }),
+  ],
 }
