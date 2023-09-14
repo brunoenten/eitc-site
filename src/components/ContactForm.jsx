@@ -1,20 +1,31 @@
 'use client'
 
-import { useId, useState } from 'react'
+import {
+  useId,
+  useState,
+  useRef,
+  useEffect,
+  createElement,
+  forwardRef,
+} from 'react'
 import { CheckboxGroup, RadioGroup, Radio, cn } from '@nextui-org/react'
-import { CustomCheckbox } from './CustomCheckbox'
+import { IconContext } from 'react-icons'
+import {
+  RiCustomerService2Line,
+  RiCodeSSlashLine,
+  RiSlideshowLine,
+  RiMailOpenLine,
+} from 'react-icons/ri'
 
+import { CustomCheckbox } from './CustomCheckbox'
 import { FadeIn } from '@/components/FadeIn'
 import { Button } from '@/components/Button'
 import railsLogo from '@/images/tech-icons/rails.png'
 import postgresLogo from '@/images/tech-icons/postgresql.png'
 import nextLogo from '@/images/tech-icons/next.png'
 import reactLogo from '@/images/tech-icons/react.png'
-// import vueLogo from '@/images/tech-icons/vue.png'
-// import nodeLogo from '@/images/tech-icons/node.png'
-// import nuxtLogo from '@/images/tech-icons/nuxt.png'
 
-function TextInput({ label, ...props }) {
+const TextInput = forwardRef(({ label, ...props }, ref) => {
   let id = useId()
 
   return (
@@ -24,6 +35,7 @@ function TextInput({ label, ...props }) {
         id={id}
         {...props}
         placeholder=" "
+        ref={ref}
         className="peer block w-full rounded-2xl border border-abbey-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-abbey-950 ring-4 ring-transparent transition focus:border-abbey-950 focus:outline-none focus:ring-abbey-950/5"
       />
       <label
@@ -34,9 +46,9 @@ function TextInput({ label, ...props }) {
       </label>
     </div>
   )
-}
+})
 
-function TextArea({ label, ...props }) {
+const TextArea = forwardRef(({ label, ...props }, ref) => {
   let id = useId()
 
   return (
@@ -45,11 +57,12 @@ function TextArea({ label, ...props }) {
         id={id}
         {...props}
         rows={8}
+        ref={ref}
         className="peer block w-full rounded-2xl border border-abbey-300 bg-transparent px-6 pb-4 pt-6 text-base/6 text-abbey-950 placeholder-abbey-500 ring-4 ring-transparent transition focus:border-abbey-950 focus:outline-none focus:ring-abbey-950/5"
       />
     </div>
   )
-}
+})
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props
@@ -71,47 +84,82 @@ export const CustomRadio = (props) => {
 }
 
 const steps = [
-  { id: 1, name: 'Service' },
-  { id: 2, name: 'Technologies' },
-  { id: 3, name: 'Project' },
-  { id: 4, name: 'Email' },
+  { id: 1, name: 'Service', icon: RiCustomerService2Line },
+  { id: 2, name: 'Technologies', icon: RiCodeSSlashLine },
+  { id: 3, name: 'Project', icon: RiSlideshowLine },
+  { id: 4, name: 'Email', icon: RiMailOpenLine },
 ]
 
 function FormSteps({ currentStep, setCurrentStep }) {
   return (
     <nav aria-label="Progress" className="mt-10">
-      <ol role="list" className="space-y-4 md:flex md:space-x-8 md:space-y-0">
-        {steps.map((step) => (
-          <li key={step.name} className="md:flex-1">
+      <ol
+        role="list"
+        className="divide-y divide-abbey-100 rounded-lg border-2 border-abbey-100 p-4 md:flex md:divide-x-2 md:divide-y-0"
+      >
+        {steps.map((step, stepIdx) => (
+          <li key={step.name} className="relative md:flex md:flex-1">
             {step.id < currentStep ? (
               <div
                 onClick={() => setCurrentStep(+step.id)}
-                className="group flex cursor-pointer flex-col border-l-4 border-abbey-600 py-2 pl-4 hover:border-abbey-800 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                className="group flex w-full items-center"
               >
-                <span className="text-sm font-medium text-abbey-600 group-hover:text-abbey-800">
-                  Step {step.id}
+                <span className="flex items-center px-6 text-sm font-medium">
+                  <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-sky-50">
+                    <IconContext.Provider
+                      value={{
+                        size: '1.5rem',
+                        className: 'text-skyblue',
+                      }}
+                    >
+                      <div>{createElement(step.icon)}</div>
+                    </IconContext.Provider>
+                  </span>
+                  <span className="ml-4 font-medium text-abbey-500 group-hover:text-abbey-900">
+                    {step.name}
+                  </span>
                 </span>
-                <span className="text-sm font-medium">{step.name}</span>
               </div>
             ) : step.id === currentStep ? (
               <div
                 onClick={() => setCurrentStep(+step.id)}
-                className="flex cursor-pointer flex-col border-l-4 border-abbey-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                className="flex items-center px-6 text-sm font-medium"
               >
-                <span className="text-sm font-medium text-abbey-600">
-                  Step {step.id}
+                <span className="bg-skyblue flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ">
+                  <IconContext.Provider
+                    value={{
+                      size: '1.5rem',
+                      className: 'text-white',
+                    }}
+                  >
+                    <div>{createElement(step.icon)}</div>
+                  </IconContext.Provider>
                 </span>
-                <span className="text-sm font-medium">{step.name}</span>
+                <div className="ml-4 font-bold">
+                  <p className="text-skyblue">Step {currentStep}/4</p>
+                  <p className="text-abbey-950">{step.name}</p>
+                </div>
               </div>
             ) : (
               <div
                 onClick={() => setCurrentStep(+step.id)}
-                className="group flex cursor-pointer flex-col border-l-4 border-abbey-200 py-2 pl-4 hover:border-abbey-300 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                className="group flex items-center"
               >
-                <span className="text-sm font-medium text-abbey-500 group-hover:text-abbey-700">
-                  Step {step.id}
+                <span className="flex items-center px-6 text-sm font-medium">
+                  <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-abbey-100 ">
+                    <IconContext.Provider
+                      value={{
+                        size: '1.5rem',
+                        className: 'text-abbey-500 group-hover:text-abbey-900',
+                      }}
+                    >
+                      <div>{createElement(step.icon)}</div>
+                    </IconContext.Provider>
+                  </span>
+                  <span className="ml-4 font-medium text-abbey-500 group-hover:text-abbey-900">
+                    {step.name}
+                  </span>
                 </span>
-                <span className="text-sm font-medium">{step.name}</span>
               </div>
             )}
           </li>
@@ -178,9 +226,6 @@ function TechnologyStep({ setCurrentStep }) {
             <CustomCheckbox value="postgresql" icon={postgresLogo} />
             <CustomCheckbox value="next" icon={nextLogo} />
             <CustomCheckbox value="react" icon={reactLogo} />
-            {/* <CustomCheckbox value="node" icon={nodeLogo} />
-            <CustomCheckbox value="nuxt" icon={nuxtLogo} />
-            <CustomCheckbox name="Vue.js" value="vue" icon={vueLogo} /> */}
           </CheckboxGroup>
         </div>
         <TextInput
@@ -198,7 +243,13 @@ function TechnologyStep({ setCurrentStep }) {
   )
 }
 
-function ProjectStep({ setCurrentStep }) {
+const ProjectStep = ({ setCurrentStep }) => {
+  const projectInputRef = useRef()
+
+  useEffect(() => {
+    projectInputRef.current.focus()
+  }, [])
+
   return (
     <FadeIn>
       <div className="mt-16">
@@ -209,10 +260,9 @@ function ProjectStep({ setCurrentStep }) {
           Give us as much relevant information as possible.
         </p>
         <TextArea
-          label="Email"
-          type="email"
-          name="email"
-          autoComplete="email"
+          label="Project description"
+          name="project"
+          ref={projectInputRef}
         />
         <div className="flex justify-end">
           <Button onClick={() => setCurrentStep(4)} className="mt-10">
@@ -224,7 +274,13 @@ function ProjectStep({ setCurrentStep }) {
   )
 }
 
-function EmailStep() {
+const EmailStep = () => {
+  const emailInputRef = useRef()
+
+  useEffect(() => {
+    emailInputRef.current.focus()
+  }, [])
+
   return (
     <FadeIn>
       <div className="mt-16">
@@ -238,6 +294,7 @@ function EmailStep() {
           label="Email"
           type="email"
           name="email"
+          ref={emailInputRef}
           autoComplete="email"
         />
       </div>
@@ -285,36 +342,6 @@ export function ContactForm() {
         </h2>
         <FormSteps currentStep={currentStep} setCurrentStep={setCurrentStep} />
         {stepForm}
-        {/* <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-          <TextInput label="Name" name="name" autoComplete="name" />
-          <TextInput
-            label="Email"
-            type="email"
-            name="email"
-            autoComplete="email"
-          />
-          <TextInput
-            label="Company"
-            name="company"
-            autoComplete="organization"
-          />
-          <TextInput label="Phone" type="tel" name="phone" autoComplete="tel" />
-          <TextArea label="Describe your project" name="message" />
-          <div className="border-abbey-300 border px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
-            <fieldset>
-              <legend className="text-abbey-500 text-base/6">Budget</legend>
-              <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
-                <RadioInput label="$25K – $50K" name="budget" value="25" />
-                <RadioInput label="$50K – $100K" name="budget" value="50" />
-                <RadioInput label="$100K – $150K" name="budget" value="100" />
-                <RadioInput label="More than $150K" name="budget" value="150" />
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <Button type="submit" className="mt-10">
-          Submit my project
-        </Button> */}
         {currentStep === 4 ? (
           <div className="flex justify-end">
             <Button type="submit" className="mt-10">

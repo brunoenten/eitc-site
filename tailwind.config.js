@@ -46,6 +46,7 @@ module.exports = {
           900: '#3c3d3d',
           950: '#221E1F',
         },
+        skyblue: '#1cacd4',
       },
     },
   },
