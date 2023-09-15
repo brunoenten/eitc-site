@@ -1,182 +1,38 @@
 'use client'
 
-import {
-  useId,
-  useState,
-  useRef,
-  useEffect,
-  createElement,
-  forwardRef,
-} from 'react'
-import { CheckboxGroup, RadioGroup, Radio, cn } from '@nextui-org/react'
-import { IconContext } from 'react-icons'
-import {
-  RiCustomerService2Line,
-  RiCodeSSlashLine,
-  RiSlideshowLine,
-  RiMailOpenLine,
-} from 'react-icons/ri'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { CheckboxGroup, RadioGroup } from '@nextui-org/react'
+import debounce from 'lodash.debounce'
 
-import { CustomCheckbox } from './CustomCheckbox'
+import { ContactFormSteps } from '@/components/ContactFormSteps'
+import { TextInput } from '@/components/TextInput'
+import { TextArea } from '@/components/TextArea'
+import { CustomCheckbox } from '@/components/CustomCheckbox'
+import { CustomRadio } from '@/components/CustomRadio'
 import { FadeIn } from '@/components/FadeIn'
 import { Button } from '@/components/Button'
 import railsLogo from '@/images/tech-icons/rails.png'
 import postgresLogo from '@/images/tech-icons/postgresql.png'
 import nextLogo from '@/images/tech-icons/next.png'
 import reactLogo from '@/images/tech-icons/react.png'
+import { isEmailValid } from '@/lib/email'
 
-const TextInput = forwardRef(({ label, ...props }, ref) => {
-  let id = useId()
+function ServiceStep({ formData, setFormData }) {
+  const updateFormData = (service) => {
+    setFormData({ ...formData, service })
+  }
 
-  return (
-    <div className="group relative z-0 transition-all focus-within:z-10">
-      <input
-        type="text"
-        id={id}
-        {...props}
-        placeholder=" "
-        ref={ref}
-        className="peer block w-full rounded-2xl border border-abbey-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-abbey-950 ring-4 ring-transparent transition focus:border-abbey-950 focus:outline-none focus:ring-abbey-950/5"
-      />
-      <label
-        htmlFor={id}
-        className="pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 text-abbey-500 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-abbey-950 peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-abbey-950"
-      >
-        {label}
-      </label>
-    </div>
-  )
-})
-
-const TextArea = forwardRef(({ label, ...props }, ref) => {
-  let id = useId()
-
-  return (
-    <div className="group relative z-0 transition-all focus-within:z-10">
-      <textarea
-        id={id}
-        {...props}
-        rows={8}
-        ref={ref}
-        className="peer block w-full rounded-2xl border border-abbey-300 bg-transparent px-6 pb-4 pt-6 text-base/6 text-abbey-950 placeholder-abbey-500 ring-4 ring-transparent transition focus:border-abbey-950 focus:outline-none focus:ring-abbey-950/5"
-      />
-    </div>
-  )
-})
-
-export const CustomRadio = (props) => {
-  const { children, ...otherProps } = props
-
-  return (
-    <Radio
-      {...otherProps}
-      classNames={{
-        base: cn(
-          'inline-flex my-1 bg-content1 items-center justify-between',
-          'flex-row-reverse max-w-[800px] cursor-pointer rounded-lg gap-4 px-4 py-8 border-2 border-abbey-100 hover:border-abbey-950',
-          'data-[selected=true]:border-abbey-950',
-        ),
-      }}
-    >
-      {children}
-    </Radio>
-  )
-}
-
-const steps = [
-  { id: 1, name: 'Service', icon: RiCustomerService2Line },
-  { id: 2, name: 'Technologies', icon: RiCodeSSlashLine },
-  { id: 3, name: 'Project', icon: RiSlideshowLine },
-  { id: 4, name: 'Email', icon: RiMailOpenLine },
-]
-
-function FormSteps({ currentStep, setCurrentStep }) {
-  return (
-    <nav aria-label="Progress" className="mt-10">
-      <ol
-        role="list"
-        className="divide-y divide-abbey-100 rounded-lg border-2 border-abbey-100 p-4 md:flex md:divide-x-2 md:divide-y-0"
-      >
-        {steps.map((step, stepIdx) => (
-          <li key={step.name} className="relative md:flex md:flex-1">
-            {step.id < currentStep ? (
-              <div
-                onClick={() => setCurrentStep(+step.id)}
-                className="group flex w-full items-center"
-              >
-                <span className="flex items-center px-6 text-sm font-medium">
-                  <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-sky-50">
-                    <IconContext.Provider
-                      value={{
-                        size: '1.5rem',
-                        className: 'text-skyblue',
-                      }}
-                    >
-                      <div>{createElement(step.icon)}</div>
-                    </IconContext.Provider>
-                  </span>
-                  <span className="ml-4 font-medium text-abbey-500 group-hover:text-abbey-900">
-                    {step.name}
-                  </span>
-                </span>
-              </div>
-            ) : step.id === currentStep ? (
-              <div
-                onClick={() => setCurrentStep(+step.id)}
-                className="flex items-center px-6 text-sm font-medium"
-              >
-                <span className="bg-skyblue flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ">
-                  <IconContext.Provider
-                    value={{
-                      size: '1.5rem',
-                      className: 'text-white',
-                    }}
-                  >
-                    <div>{createElement(step.icon)}</div>
-                  </IconContext.Provider>
-                </span>
-                <div className="ml-4 font-bold">
-                  <p className="text-skyblue">Step {currentStep}/4</p>
-                  <p className="text-abbey-950">{step.name}</p>
-                </div>
-              </div>
-            ) : (
-              <div
-                onClick={() => setCurrentStep(+step.id)}
-                className="group flex items-center"
-              >
-                <span className="flex items-center px-6 text-sm font-medium">
-                  <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-abbey-100 ">
-                    <IconContext.Provider
-                      value={{
-                        size: '1.5rem',
-                        className: 'text-abbey-500 group-hover:text-abbey-900',
-                      }}
-                    >
-                      <div>{createElement(step.icon)}</div>
-                    </IconContext.Provider>
-                  </span>
-                  <span className="ml-4 font-medium text-abbey-500 group-hover:text-abbey-900">
-                    {step.name}
-                  </span>
-                </span>
-              </div>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  )
-}
-
-function ServiceStep({ setCurrentStep }) {
   return (
     <FadeIn>
       <div className="mt-16">
         <label className="block text-2xl font-bold leading-6 text-abbey-950">
           What service do you need?
         </label>
-        <RadioGroup className="mt-10">
+        <RadioGroup
+          defaultValue={formData.service}
+          onValueChange={updateFormData}
+          className="mt-10"
+        >
           <CustomRadio value="Proof of Concept development">
             Proof of Concept development
           </CustomRadio>
@@ -191,18 +47,25 @@ function ServiceStep({ setCurrentStep }) {
             Enhance User Experience
           </CustomRadio>
         </RadioGroup>
-        <div className="flex justify-end">
-          <Button onClick={() => setCurrentStep(2)} className="mt-10">
-            Next step
-          </Button>
-        </div>
       </div>
     </FadeIn>
   )
 }
 
-function TechnologyStep({ setCurrentStep }) {
-  const [groupSelected, setGroupSelected] = useState([])
+function TechnologyStep({ formData, setFormData }) {
+  const updateMainTechnos = (mainTechnologies) => {
+    setFormData({
+      ...formData,
+      mainTechnologies: mainTechnologies.join(','),
+    })
+  }
+
+  const updateAdditionalTechnos = (event) => {
+    setFormData({
+      ...formData,
+      additionalTechnologies: event.target.value,
+    })
+  }
 
   return (
     <FadeIn>
@@ -215,8 +78,8 @@ function TechnologyStep({ setCurrentStep }) {
             These are the one we love and master:
           </p>
           <CheckboxGroup
-            value={groupSelected}
-            onChange={setGroupSelected}
+            defaultValue={formData.mainTechnologies.split(',')}
+            onChange={updateMainTechnos}
             orientation="horizontal"
             classNames={{
               base: 'w-full',
@@ -232,23 +95,30 @@ function TechnologyStep({ setCurrentStep }) {
           label="But feel free to add more..."
           type="text"
           name="additionalTechnologies"
+          value={formData.additionalTechnologies}
+          onChange={updateAdditionalTechnos}
         />
-        <div className="flex justify-end">
-          <Button onClick={() => setCurrentStep(3)} className="mt-10">
-            Next step
-          </Button>
-        </div>
       </div>
     </FadeIn>
   )
 }
 
-const ProjectStep = ({ setCurrentStep }) => {
+const ProjectStep = ({ formData, setFormData }) => {
   const projectInputRef = useRef()
 
   useEffect(() => {
     projectInputRef.current.focus()
   }, [])
+
+  const updateProject = useCallback(
+    debounce((event) => {
+      setFormData({
+        ...formData,
+        project: event.target.value,
+      })
+    }, 500),
+    [],
+  )
 
   return (
     <FadeIn>
@@ -262,24 +132,28 @@ const ProjectStep = ({ setCurrentStep }) => {
         <TextArea
           label="Project description"
           name="project"
+          defaultValue={formData.project}
           ref={projectInputRef}
+          onChange={updateProject}
         />
-        <div className="flex justify-end">
-          <Button onClick={() => setCurrentStep(4)} className="mt-10">
-            Next step
-          </Button>
-        </div>
       </div>
     </FadeIn>
   )
 }
 
-const EmailStep = () => {
+const EmailStep = ({ formData, setFormData }) => {
   const emailInputRef = useRef()
 
   useEffect(() => {
     emailInputRef.current.focus()
   }, [])
+
+  const updateEmail = (event) => {
+    setFormData({
+      ...formData,
+      email: event.target.value,
+    })
+  }
 
   return (
     <FadeIn>
@@ -296,6 +170,8 @@ const EmailStep = () => {
           name="email"
           ref={emailInputRef}
           autoComplete="email"
+          value={formData.email}
+          onChange={updateEmail}
         />
       </div>
     </FadeIn>
@@ -304,21 +180,61 @@ const EmailStep = () => {
 
 export function ContactForm() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [formData, setFormData] = useState({
+    service: '',
+    mainTechnologies: '',
+    additionalTechnologies: '',
+    project: '',
+    email: '',
+  })
+  const [error, setError] = useState(true)
+
+  const checkValidity = () => {
+    if (currentStep === 1 && formData.service.length > 0) {
+      setError(false)
+    } else if (
+      currentStep === 2 &&
+      (formData.mainTechnologies.length > 0 ||
+        formData.additionalTechnologies.length > 0)
+    ) {
+      setError(false)
+    } else if (currentStep === 3 && formData.project.length > 10) {
+      setError(false)
+    } else if (currentStep === 4 && isEmailValid(formData.email)) {
+      setError(false)
+    } else {
+      setError(true)
+    }
+  }
+
+  useEffect(() => {
+    if (!error) return
+    checkValidity()
+  }, [formData])
+
   let stepForm
   if (currentStep === 1) {
-    stepForm = <ServiceStep setCurrentStep={setCurrentStep} />
+    stepForm = <ServiceStep formData={formData} setFormData={setFormData} />
   } else if (currentStep === 2) {
-    stepForm = <TechnologyStep setCurrentStep={setCurrentStep} />
+    stepForm = <TechnologyStep formData={formData} setFormData={setFormData} />
   } else if (currentStep === 3) {
-    stepForm = <ProjectStep setCurrentStep={setCurrentStep} />
+    stepForm = <ProjectStep formData={formData} setFormData={setFormData} />
   } else {
-    stepForm = <EmailStep />
+    stepForm = <EmailStep formData={formData} setFormData={setFormData} />
   }
 
   async function onSubmit(event) {
     event.preventDefault()
-    const formData = new FormData(event.target)
-    console.log(JSON.stringify(formData))
+
+    if (error) return
+
+    if (currentStep < 4) {
+      checkValidity()
+      return setCurrentStep(currentStep + 1)
+    }
+
+    console.log('Submit form', formData)
+
     try {
       const response = await fetch('/api/contact', {
         method: 'post',
@@ -340,17 +256,17 @@ export function ContactForm() {
         <h2 className="font-display text-base font-semibold text-abbey-950">
           Work inquiries
         </h2>
-        <FormSteps currentStep={currentStep} setCurrentStep={setCurrentStep} />
+        <ContactFormSteps
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          setError={setError}
+        />
         {stepForm}
-        {currentStep === 4 ? (
-          <div className="flex justify-end">
-            <Button type="submit" className="mt-10">
-              Submit
-            </Button>
-          </div>
-        ) : (
-          ''
-        )}
+        <div className="flex justify-end">
+          <Button type="submit" className="mt-10" disabled={error}>
+            {currentStep === 4 ? 'Submit' : 'Next Step'}
+          </Button>
+        </div>
       </form>
     </FadeIn>
   )
