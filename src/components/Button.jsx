@@ -15,7 +15,7 @@ export function Button({
       ? 'bg-white text-abbey-950 hover:bg-abbey-200'
       : `text-white ${
           disabled
-            ? 'bg-abbey-500 cursor-not-allowed'
+            ? 'bg-abbey-300 cursor-not-allowed'
             : 'bg-abbey-950 hover:bg-abbey-800'
         }`,
   )

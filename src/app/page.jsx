@@ -10,7 +10,7 @@ import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoReTokFull from '@/images/clients/retok/logo-full.svg'
 import imageLaptop from '@/images/laptop.jpg'
-import proluceoScreenshot from '@/images/project-app-screenshot.png'
+import proluceoScreenshot from '@/images/screenshot-proluceo.jpg'
 import { loadCaseStudies } from '@/lib/mdx'
 
 function CaseStudies({ caseStudies }) {
@@ -29,7 +29,7 @@ function CaseStudies({ caseStudies }) {
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
             <FadeIn key={caseStudy.href} className="flex">
-              <article className="ring-abbey-950/5 hover:bg-abbey-50 relative flex w-full flex-col rounded-3xl p-6 ring-1 transition sm:p-8">
+              <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-abbey-950/5 transition hover:bg-abbey-50 sm:p-8">
                 <h3>
                   <Link href={caseStudy.href}>
                     <span className="absolute inset-0 rounded-3xl" />
@@ -41,13 +41,13 @@ function CaseStudies({ caseStudies }) {
                     />
                   </Link>
                 </h3>
-                <p className="text-abbey-950 mt-6 flex gap-x-2 text-sm">
+                <p className="mt-6 flex gap-x-2 text-sm text-abbey-950">
                   Case study
                 </p>
-                <p className="text-abbey-950 mt-6 font-display text-2xl font-semibold">
+                <p className="mt-6 font-display text-2xl font-semibold text-abbey-950">
                   {caseStudy.title}
                 </p>
-                <p className="text-abbey-600 mt-4 text-base">
+                <p className="mt-4 text-base text-abbey-600">
                   {caseStudy.description}
                 </p>
               </article>
@@ -130,7 +130,7 @@ function Proluceo() {
             href="https://github.com/proluceo"
             target="_blank"
             rel="noreferrer"
-            className="text-abbey-950 hover:text-abbey-700 font-semibold transition"
+            className="font-semibold text-abbey-950 transition hover:text-abbey-700"
             aria-label={`Proluceo source code on Github`}
           >
             Github
@@ -144,12 +144,12 @@ function Proluceo() {
             <Image
               src={proluceoScreenshot}
               alt="Proluceo app screenshot"
-              class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
+              className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
               width="2432"
               height="1442"
             />
-            <div class="relative" aria-hidden="true">
-              <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
+            <div className="relative" aria-hidden="true">
+              <div className="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
             </div>
           </div>
         </FadeIn>
@@ -170,10 +170,10 @@ export default async function Home() {
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <h1 className="text-abbey-950 font-display text-5xl font-medium tracking-tight [text-wrap:balance] sm:text-7xl">
+          <h1 className="font-display text-5xl font-medium tracking-tight text-abbey-950 [text-wrap:balance] sm:text-7xl">
             Crafting Apps for Impact: Scalability, UX, Performance Aligned.
           </h1>
-          <p className="text-abbey-600 mt-6 text-xl">
+          <p className="mt-6 text-xl text-abbey-600">
             We provide R&D services to European SMEs seeking to replace outdated
             high maintenance and low performance web applications with state of
             the art ones.

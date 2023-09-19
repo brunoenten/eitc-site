@@ -208,9 +208,8 @@ export function ContactForm() {
   }
 
   useEffect(() => {
-    if (!error) return
     checkValidity()
-  }, [formData])
+  }, [formData, currentStep])
 
   let stepForm
   if (currentStep === 1) {
@@ -225,27 +224,21 @@ export function ContactForm() {
 
   async function onSubmit(event) {
     event.preventDefault()
-
     if (error) return
-
     if (currentStep < 4) {
-      checkValidity()
       return setCurrentStep(currentStep + 1)
     }
-
-    console.log('Submit form', formData)
 
     try {
       const response = await fetch('/api/contact', {
         method: 'post',
-        body: formData,
+        body: JSON.stringify(formData),
       })
       if (!response.ok) {
         throw new Error(`Invalid response: ${response.status}`)
       }
       alert('Thanks for contacting us, we will get back to you soon!')
     } catch (err) {
-      console.error(err)
       alert("We can't submit the form, try again later?")
     }
   }
