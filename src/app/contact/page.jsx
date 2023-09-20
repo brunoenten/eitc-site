@@ -24,14 +24,14 @@ import { SocialMedia } from '@/components/SocialMedia'
 function ContactDetails() {
   return (
     <FadeIn>
-      <h2 className="text-abbey-950 font-display text-base font-semibold">
+      <h2 className="font-display text-base font-semibold text-abbey-950">
         Our office
       </h2>
 
       <Offices className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2" />
 
       <Border className="mt-16 pt-16">
-        <h2 className="text-abbey-950 font-display text-base font-semibold">
+        <h2 className="font-display text-base font-semibold text-abbey-950">
           Email us
         </h2>
         <div className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
@@ -45,7 +45,7 @@ function ContactDetails() {
       </Border>
 
       <Border className="mt-16 pt-16">
-        <h2 className="text-abbey-950 font-display text-base font-semibold">
+        <h2 className="font-display text-base font-semibold text-abbey-950">
           Follow us
         </h2>
         <SocialMedia className="mt-6" />
@@ -64,8 +64,8 @@ export default function Contact() {
     <>
       <PageIntro eyebrow="Contact us" title="Let’s work together">
         <p>
-          Please use the form below to submit your project as precisely as
-          possible, and we'll get back to you within 48 hours.
+          Please use the form below to find out if we can find a match, and
+          we'll get back to you within 48 hours.
         </p>
       </PageIntro>
 
