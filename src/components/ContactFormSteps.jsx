@@ -3,15 +3,15 @@ import { IconContext } from 'react-icons'
 import {
   RiCustomerService2Line,
   RiCodeSSlashLine,
-  RiSlideshowLine,
+  RiBuilding4Line,
   RiMailOpenLine,
 } from 'react-icons/ri'
 
 const steps = [
   { id: 1, name: 'Service', icon: RiCustomerService2Line },
   { id: 2, name: 'Technologies', icon: RiCodeSSlashLine },
-  { id: 3, name: 'Project', icon: RiSlideshowLine },
-  { id: 4, name: 'Email', icon: RiMailOpenLine },
+  { id: 3, name: 'Company', icon: RiBuilding4Line },
+  { id: 4, name: 'Contact', icon: RiMailOpenLine },
 ]
 
 export function ContactFormSteps({ currentStep, setCurrentStep, setError }) {

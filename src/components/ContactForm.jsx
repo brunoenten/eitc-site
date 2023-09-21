@@ -2,11 +2,10 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { CheckboxGroup, RadioGroup } from '@nextui-org/react'
-import debounce from 'lodash.debounce'
+import { IconContext } from 'react-icons'
 
 import { ContactFormSteps } from '@/components/ContactFormSteps'
 import { TextInput } from '@/components/TextInput'
-import { TextArea } from '@/components/TextArea'
 import { CustomCheckbox } from '@/components/CustomCheckbox'
 import { CustomRadio } from '@/components/CustomRadio'
 import { FadeIn } from '@/components/FadeIn'
@@ -16,6 +15,12 @@ import postgresLogo from '@/images/tech-icons/postgresql.png'
 import nextLogo from '@/images/tech-icons/next.png'
 import reactLogo from '@/images/tech-icons/react.png'
 import { isEmailValid } from '@/lib/email'
+import {
+  FcIdea,
+  FcMoneyTransfer,
+  FcOrganization,
+  FcBusinessman,
+} from 'react-icons/fc'
 
 function ServiceStep({ formData, setFormData }) {
   const updateFormData = (service) => {
@@ -103,50 +108,115 @@ function TechnologyStep({ formData, setFormData }) {
   )
 }
 
-const ProjectStep = ({ formData, setFormData }) => {
-  const projectInputRef = useRef()
+const CompanyStep = ({ formData, setFormData }) => {
+  const updateCompany = (company) => {
+    setFormData({ ...formData, company })
+  }
 
-  useEffect(() => {
-    projectInputRef.current.focus()
-  }, [])
-
-  const updateProject = useCallback(
-    debounce((event) => {
-      setFormData({
-        ...formData,
-        project: event.target.value,
-      })
-    }, 500),
-    [],
-  )
+  const updateEmployees = (employees) => {
+    setFormData({ ...formData, employees })
+  }
 
   return (
     <FadeIn>
       <div className="mt-16">
         <label className="block text-2xl font-bold leading-6 text-abbey-950">
-          Tell us more about your project
+          Tell us more about your company
         </label>
-        <p className="mb-10 text-abbey-600">
-          Give us as much relevant information as possible.
-        </p>
-        <TextArea
-          label="Project description"
-          name="project"
-          defaultValue={formData.project}
-          ref={projectInputRef}
-          onChange={updateProject}
-        />
+        <div className="my-10 flex w-full flex-col gap-1">
+          <p className="text-lg font-semibold text-abbey-900">
+            Your company is a:
+          </p>
+          <RadioGroup
+            defaultValue={formData.company}
+            onValueChange={updateCompany}
+            classNames={{
+              wrapper: 'grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-3 pt-6',
+            }}
+            orientation="horizontal"
+          >
+            <CustomRadio value="Pre-Funding Startup" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '2.5rem' }}>
+                  <FcIdea />
+                </IconContext.Provider>
+                <span className="mt-4">Pre-Funding Startup</span>
+              </div>
+            </CustomRadio>
+            <CustomRadio value="Post-Funding Startup" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '2.5rem' }}>
+                  <FcMoneyTransfer />
+                </IconContext.Provider>
+                <span className="mt-4">Post-Funding Startup</span>
+              </div>
+            </CustomRadio>
+            <CustomRadio value="Established Business" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '2.5rem' }}>
+                  <FcOrganization />
+                </IconContext.Provider>
+                <span className="mt-4">Established Business</span>
+              </div>
+            </CustomRadio>
+          </RadioGroup>
+        </div>
+        <div className="mt-16 flex w-full flex-col gap-1">
+          <p className="text-lg font-semibold text-abbey-900">
+            How many employees do you currently have?
+          </p>
+          <RadioGroup
+            defaultValue={formData.employees}
+            onValueChange={updateEmployees}
+            classNames={{
+              wrapper: 'grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-3 pt-6',
+            }}
+            orientation="horizontal"
+          >
+            <CustomRadio value="Less than 10" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '2rem' }}>
+                  <FcBusinessman />
+                </IconContext.Provider>
+                <span className="mt-4">Less than 10</span>
+              </div>
+            </CustomRadio>
+            <CustomRadio value="Between 10 and 50" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '2.5rem' }}>
+                  <FcBusinessman />
+                </IconContext.Provider>
+                <span className="mt-4">Between 10 and 50</span>
+              </div>
+            </CustomRadio>
+            <CustomRadio value="More than 50" withicon="true">
+              <div className="flex flex-col items-center justify-center">
+                <IconContext.Provider value={{ size: '3rem' }}>
+                  <FcBusinessman />
+                </IconContext.Provider>
+                <span className="mt-4">More than 50</span>
+              </div>
+            </CustomRadio>
+          </RadioGroup>
+        </div>
       </div>
     </FadeIn>
   )
 }
 
 const EmailStep = ({ formData, setFormData }) => {
-  const emailInputRef = useRef()
+  const nameInputRef = useRef()
 
   useEffect(() => {
-    emailInputRef.current.focus()
+    nameInputRef.current.focus()
   }, [])
+
+  const updateName = (event) => {
+    setFormData({
+      ...formData,
+      name: event.target.value,
+    })
+  }
 
   const updateEmail = (event) => {
     setFormData({
@@ -161,17 +231,26 @@ const EmailStep = ({ formData, setFormData }) => {
         <label className="block text-2xl font-bold leading-6 text-abbey-950">
           Confirm Submission
         </label>
-        <p className="mb-10 text-abbey-600">
+        <p className="text-abbey-600">
           Thanks for taking the time to complete this form.
         </p>
+        <TextInput
+          label="Full Name"
+          type="text"
+          name="name"
+          ref={nameInputRef}
+          value={formData.name}
+          onChange={updateName}
+          className="mt-10"
+        />
         <TextInput
           label="Email"
           type="email"
           name="email"
-          ref={emailInputRef}
           autoComplete="email"
           value={formData.email}
           onChange={updateEmail}
+          className="mt-10"
         />
       </div>
     </FadeIn>
@@ -184,7 +263,9 @@ export function ContactForm() {
     service: '',
     mainTechnologies: '',
     additionalTechnologies: '',
-    project: '',
+    company: '',
+    employees: '',
+    name: '',
     email: '',
   })
   const [error, setError] = useState(true)
@@ -198,9 +279,17 @@ export function ContactForm() {
         formData.additionalTechnologies.length > 0)
     ) {
       setError(false)
-    } else if (currentStep === 3 && formData.project.length > 10) {
+    } else if (
+      currentStep === 3 &&
+      formData.company.length > 0 &&
+      formData.employees.length > 0
+    ) {
       setError(false)
-    } else if (currentStep === 4 && isEmailValid(formData.email)) {
+    } else if (
+      currentStep === 4 &&
+      formData.name.length > 0 &&
+      isEmailValid(formData.email)
+    ) {
       setError(false)
     } else {
       setError(true)
@@ -217,7 +306,7 @@ export function ContactForm() {
   } else if (currentStep === 2) {
     stepForm = <TechnologyStep formData={formData} setFormData={setFormData} />
   } else if (currentStep === 3) {
-    stepForm = <ProjectStep formData={formData} setFormData={setFormData} />
+    stepForm = <CompanyStep formData={formData} setFormData={setFormData} />
   } else {
     stepForm = <EmailStep formData={formData} setFormData={setFormData} />
   }

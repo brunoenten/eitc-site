@@ -2,9 +2,12 @@ import { useId, forwardRef } from 'react'
 
 export const TextInput = forwardRef(({ label, ...props }, ref) => {
   let id = useId()
+  console.log(props)
 
   return (
-    <div className="group relative z-0 transition-all focus-within:z-10">
+    <div
+      className={`group relative z-0 transition-all focus-within:z-10 ${props.className}`}
+    >
       <input
         type="text"
         id={id}

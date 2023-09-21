@@ -20,14 +20,16 @@ export async function POST(request) {
     text: `
       Service: ${formData.service}
       Technologies: ${formData.mainTechnologies} ${formData.additionalTechnologies}
-      Project: ${formData.project}
-      Contact: ${formData.email}
+      Company: ${formData.company}
+      Employees: ${formData.employees}
+      Contact: ${formData.name} <${formData.email}>
     `,
     html: `
       <p><b>Service:</b> ${formData.service}</p>
       <p><b>Technologies:</b> ${formData.mainTechnologies} ${formData.additionalTechnologies}</p>
-      <p><b>Project:</b> ${formData.project}</p>
-      <p><b>Contact:</b> ${formData.email}</p>
+      <p><b>Company:</b> ${formData.company}</p>
+      <p><b>Employees:</b> ${formData.employees}</p>
+      <p><b>Contact:</b> ${formData.name} <${formData.email}></p>
     `,
   }
 
