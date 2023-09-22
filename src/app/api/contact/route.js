@@ -19,14 +19,14 @@ export async function POST(request) {
     subject: `Maxent Consulting Contact from <${formData.email}>`,
     text: `
       Service: ${formData.service}
-      Technologies: ${formData.mainTechnologies} ${formData.additionalTechnologies}
+      Technologies: ${formData.mainTechnologies} ${formData.secondaryTechnologies} ${formData.additionalTechnologies}
       Company: ${formData.company}
       Employees: ${formData.employees}
       Contact: ${formData.name} <${formData.email}>
     `,
     html: `
       <p><b>Service:</b> ${formData.service}</p>
-      <p><b>Technologies:</b> ${formData.mainTechnologies} ${formData.additionalTechnologies}</p>
+      <p><b>Technologies:</b> ${formData.mainTechnologies} ${formData.secondaryTechnologies} ${formData.additionalTechnologies}</p>
       <p><b>Company:</b> ${formData.company}</p>
       <p><b>Employees:</b> ${formData.employees}</p>
       <p><b>Contact:</b> ${formData.name} <${formData.email}></p>

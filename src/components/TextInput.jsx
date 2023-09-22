@@ -2,7 +2,6 @@ import { useId, forwardRef } from 'react'
 
 export const TextInput = forwardRef(({ label, ...props }, ref) => {
   let id = useId()
-  console.log(props)
 
   return (
     <div

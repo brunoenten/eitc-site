@@ -20,10 +20,10 @@ export const CustomCheckbox = ({ name, icon, value }) => {
         <Image
           src={icon}
           alt={`${name} logo`}
-          className="h-10 w-auto"
+          className="h-12 w-auto"
           unoptimized
         />
-        {name ? <span className="ml-2">{name}</span> : ''}
+        {name ? <span className="ml-2 font-medium">{name}</span> : ''}
       </div>
     </Checkbox>
   )
