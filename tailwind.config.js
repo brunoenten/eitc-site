@@ -59,6 +59,7 @@ module.exports = {
             primary: {
               DEFAULT: '#221E1F',
             },
+            focus: '#221E1F',
           },
         },
       },

@@ -3,13 +3,19 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { CheckboxGroup, RadioGroup } from '@nextui-org/react'
 import { IconContext } from 'react-icons'
+import { Button, Card, CardBody } from '@nextui-org/react'
+import {
+  FcIdea,
+  FcMoneyTransfer,
+  FcOrganization,
+  FcBusinessman,
+} from 'react-icons/fc'
 
 import { ContactFormSteps } from '@/components/ContactFormSteps'
 import { TextInput } from '@/components/TextInput'
 import { CustomCheckbox } from '@/components/CustomCheckbox'
 import { CustomRadio } from '@/components/CustomRadio'
 import { FadeIn } from '@/components/FadeIn'
-import { Button } from '@/components/Button'
 import railsLogo from '@/images/tech-icons/rails.png'
 import postgresLogo from '@/images/tech-icons/postgresql.png'
 import nextLogo from '@/images/tech-icons/next.png'
@@ -21,12 +27,7 @@ import vueLogo from '@/images/tech-icons/vue.png'
 import nodeLogo from '@/images/tech-icons/node.png'
 import tailwindLogo from '@/images/tech-icons/tailwindcss.svg'
 import { isEmailValid } from '@/lib/email'
-import {
-  FcIdea,
-  FcMoneyTransfer,
-  FcOrganization,
-  FcBusinessman,
-} from 'react-icons/fc'
+import { scrollToElement } from '@/lib/scroll'
 
 function ServiceStep({ formData, setFormData }) {
   const updateFormData = (service) => {
@@ -147,7 +148,7 @@ function TechnologyStep({ formData, setFormData }) {
             <CustomCheckbox value="node" icon={nodeLogo} />
           </CheckboxGroup>
         </div>
-        <div className="my-10 flex w-full flex-col gap-1">
+        <div className="mt-10 flex w-full flex-col gap-1">
           <span
             className={` text-abbey-600  ${
               isInputDisplayed
@@ -270,7 +271,7 @@ const CompanyStep = ({ formData, setFormData }) => {
   )
 }
 
-const EmailStep = ({ formData, setFormData }) => {
+const EmailStep = ({ formData, setFormData, isFormSubmitted, error }) => {
   const nameInputRef = useRef()
 
   useEffect(() => {
@@ -300,6 +301,13 @@ const EmailStep = ({ formData, setFormData }) => {
         <p className="text-abbey-600">
           Thanks for taking the time to complete this form.
         </p>
+        {isFormSubmitted && error && (
+          <Notification type="error" className="mt-10">
+            <p>
+              An error occurred while submitting the form, please try again.
+            </p>
+          </Notification>
+        )}
         <TextInput
           label="Full Name"
           type="text"
@@ -323,6 +331,18 @@ const EmailStep = ({ formData, setFormData }) => {
   )
 }
 
+const Notification = ({ type, children, className }) => {
+  return (
+    <Card
+      className={`rounded-lg text-white ${className} ${
+        type === 'success' ? 'bg-skyblue' : 'bg-red-500'
+      }`}
+    >
+      <CardBody className="text-center">{children}</CardBody>
+    </Card>
+  )
+}
+
 export function ContactForm() {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -336,6 +356,8 @@ export function ContactForm() {
     email: '',
   })
   const [error, setError] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
   const checkValidity = () => {
     if (currentStep === 1 && formData.service.length > 0) {
@@ -368,14 +390,22 @@ export function ContactForm() {
   }, [formData, currentStep])
 
   let stepForm
+
   if (currentStep === 1) {
     stepForm = <ServiceStep formData={formData} setFormData={setFormData} />
   } else if (currentStep === 2) {
     stepForm = <TechnologyStep formData={formData} setFormData={setFormData} />
   } else if (currentStep === 3) {
     stepForm = <CompanyStep formData={formData} setFormData={setFormData} />
-  } else {
-    stepForm = <EmailStep formData={formData} setFormData={setFormData} />
+  } else if (currentStep === 4) {
+    stepForm = (
+      <EmailStep
+        formData={formData}
+        setFormData={setFormData}
+        isFormSubmitted={isFormSubmitted}
+        error={error}
+      />
+    )
   }
 
   async function onSubmit(event) {
@@ -386,37 +416,62 @@ export function ContactForm() {
     }
 
     try {
+      setIsLoading(true)
       const response = await fetch('/api/contact', {
         method: 'post',
         body: JSON.stringify(formData),
       })
       if (!response.ok) {
+        setIsLoading(false)
+        setIsFormSubmitted(true)
+        setError(true)
         throw new Error(`Invalid response: ${response.status}`)
       }
-      alert('Thanks for contacting us, we will get back to you soon!')
+      setIsLoading(false)
+      setIsFormSubmitted(true)
+      scrollToElement('formContainer')
     } catch (err) {
-      alert("We can't submit the form, try again later?")
+      setIsLoading(false)
+      setIsFormSubmitted(true)
+      setError(true)
     }
   }
 
   return (
     <FadeIn className="lg:order-last lg:col-span-2">
-      <form onSubmit={onSubmit}>
-        <h2 className="font-display text-base font-semibold text-abbey-950">
-          Work inquiries
-        </h2>
-        <ContactFormSteps
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          setError={setError}
-        />
-        {stepForm}
-        <div className="flex justify-end">
-          <Button type="submit" className="mt-10" disabled={error}>
-            {currentStep === 4 ? 'Submit' : 'Next Step'}
-          </Button>
-        </div>
-      </form>
+      <section id="formContainer">
+        {isFormSubmitted ? (
+          <Notification type="success">
+            <p>Thanks, your submission has been received.</p>
+            <p>We'll get back to you within 48 hours.</p>
+          </Notification>
+        ) : (
+          <form onSubmit={onSubmit}>
+            <h2 className="font-display text-base font-semibold text-abbey-950">
+              Work inquiries
+            </h2>
+            <ContactFormSteps
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              setError={setError}
+            />
+            {stepForm}
+
+            <div className="flex justify-end">
+              <Button
+                type="submit"
+                color="primary"
+                className="mt-10 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-abbey-800 disabled:cursor-not-allowed disabled:bg-abbey-300"
+                disabled={error}
+                isLoading={isLoading}
+                radius="full"
+              >
+                {currentStep === 4 ? 'Submit' : 'Next Step'}
+              </Button>
+            </div>
+          </form>
+        )}
+      </section>
     </FadeIn>
   )
 }
