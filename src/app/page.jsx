@@ -8,6 +8,7 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
+import { Button } from '@/components/Button'
 import logoReTokFull from '@/images/clients/retok/logo-full.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import proluceoScreenshot from '@/images/screenshot-proluceo.jpg'
@@ -42,7 +43,7 @@ function CaseStudies({ caseStudies }) {
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-abbey-950">
-                  Case study
+                  Case study | {caseStudy.client}
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-abbey-950">
                   {caseStudy.title}
@@ -55,6 +56,11 @@ function CaseStudies({ caseStudies }) {
           ))}
         </FadeInStagger>
       </Container>
+      <div className="mt-16 flex items-center justify-center">
+        <Button href="/work" aria-label="Read more case studies">
+          See all projects
+        </Button>
+      </div>
     </>
   )
 }
@@ -116,7 +122,7 @@ function Proluceo() {
     <>
       <SectionIntro
         title="Meet Proluceo, our open source web ERP"
-        className="mt-24sm:mt-32 lg:mt-40"
+        className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
           Having worked with a number of startups and SMEs, we realized that the
@@ -158,6 +164,36 @@ function Proluceo() {
   )
 }
 
+function Team() {
+  return (
+    <div className="mt-24 bg-abbey-50 py-16 sm:mt-32 sm:py-28 md:py-32 lg:mt-40">
+      <SectionIntro eyebrow="Team" title="Access to our network of IT experts">
+        <p>
+          We work exclusively with the best IT professionals in our network
+          which are dedicated to delivering the best services and solutions that
+          meet the highest standards.
+        </p>
+        <p className="mt-4">
+          We currently have 8 positions to fill so feel free to{' '}
+          <a
+            href="mailto:maxlerasle@gmail.com"
+            className="font-semibold text-abbey-950 transition hover:text-abbey-700"
+            aria-label={`Email us`}
+          >
+            get in touch
+          </a>{' '}
+          if you would like to work with us.
+        </p>
+        <div className="mt-16">
+          <Button href="/about" aria-label="Learn more about us">
+            Learn more about us
+          </Button>
+        </div>
+      </SectionIntro>
+    </div>
+  )
+}
+
 export const metadata = {
   description:
     'We are an IT consulting agency helping European SMEs to get state of the art web applications.',
@@ -194,6 +230,8 @@ export default async function Home() {
       <CaseStudies caseStudies={caseStudies} />
 
       <Proluceo />
+
+      <Team />
 
       <ContactSection />
     </>
