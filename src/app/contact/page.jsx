@@ -8,19 +8,6 @@ import { Offices } from '@/components/Offices'
 import { PageIntro } from '@/components/PageIntro'
 import { SocialMedia } from '@/components/SocialMedia'
 
-// function RadioInput({ label, ...props }) {
-//   return (
-//     <label className="flex gap-x-3">
-//       <input
-//         type="radio"
-//         {...props}
-//         className="h-6 w-6 flex-none appearance-none rounded-full border border-abbey-950/20 outline-none checked:border-[0.5rem] checked:border-abbey-950 focus-visible:ring-1 focus-visible:ring-abbey-950 focus-visible:ring-offset-2"
-//       />
-//       <span className="text-base/6 text-abbey-950">{label}</span>
-//     </label>
-//   )
-// }
-
 function ContactDetails() {
   return (
     <FadeIn>
