@@ -15,7 +15,7 @@ export async function POST(request) {
   const formData = await request.json()
   const mailData = {
     from: process.env.CONTACT_EMAIL,
-    to: 'maxlerasle@gmail.com',
+    to: process.env.CONTACT_EMAIL,
     subject: `Maxent Consulting Contact from <${formData.email}>`,
     text: `
       Service: ${formData.service}
