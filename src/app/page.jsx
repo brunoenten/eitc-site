@@ -11,7 +11,7 @@ import { Testimonial } from '@/components/Testimonial'
 import { Button } from '@/components/Button'
 import logoReTokFull from '@/images/clients/retok/logo-full.svg'
 import imageLaptop from '@/images/laptop.jpg'
-import proluceoScreenshot from '@/images/screenshot-proluceo.jpg'
+import proluceoScreenshot from '@/images/screenshot-proluceo.png'
 import { loadCaseStudies } from '@/lib/mdx'
 
 function CaseStudies({ caseStudies }) {
